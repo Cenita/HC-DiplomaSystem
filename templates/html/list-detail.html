@@ -1,0 +1,34 @@
+{% extends 'html/base.html' %}
+{% block header %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='honor/dist/css/list-detail.min.css') }}">
+{% endblock %}
+{% block nav %}
+    <a href="{{url_for('list',id=1)}}" class="back-index"><span class="icon-left iconfont"></span></a>
+    <div class="logo">
+        <img src="{{ url_for('static',filename='honor/dist/images/logo.png') }}">
+    </div>
+{% endblock %}
+{% block main_part %}
+    <div class="list" style="font-family: 'Microsoft YaHei UI'">
+		<ul class="listall">
+			<li>
+				<div class="list-container">
+					<p class="list-title">{{ diploma.project_name }}</p>
+					<p class="list-detail" style="width: 90%">{{ diploma.compete_name }}</p>
+					<span class="list-rank">奖次：{{ diploma.level[0]+diploma.rank }}</span>
+				</div>
+				<div class="list-container bottom">
+					<p class="text-people">比赛人员：{{ " ".join(diploma.members) }}</p>
+					<p class="text-time">项目时间：{{ diploma.diploma_time.strftime('%Y-%m') }}</p>
+                    {% if diploma.content!='' %}
+                    <p class="text-header">项目概述:</p>
+					<p class="text-detail">{{ diploma.content }}</p>
+                    {% endif %}
+
+					<img src="{{ diploma.image_path }}" class="awards">
+				</div>
+			</li>
+		</ul>
+	</div>
+{% endblock %}
+

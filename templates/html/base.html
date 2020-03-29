@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>环创奖状展示系统</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='honor/node_modules/bootstrap/dist/css/bootstrap.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='honor/iconfont/iconfont.css') }}">
+	<script type="text/javascript" src="{{ url_for('static',filename='honor/dist/js/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='honor/dist/js/index.min.js') }}"></script>
+    {% block header %}{% endblock %}
+</head>
+<body>
+	<nav>
+		<div class="container">
+            {% block nav %}
+                <a href="{{ url_for('index') }}">
+                    <div class="logo">
+                        <img src="{{ url_for('static',filename='honor/dist/images/logo.png') }}">
+                    </div>
+                    <div class="hclab">
+                        <img src="{{ url_for('static',filename='honor/dist/images/hclab.png') }}">
+                    </div>
+                </a>
+            {% endblock %}
+            <div class="search-box">
+                <button><i class="icon-List iconfont"></i></button>
+            </div>
+            
+		 	<div class="down">
+		 		<ul>
+		 			<li>
+		 				<div class="line"></div>
+		 				<a href="{{ url_for('index') }}">首页</a>
+		 			</li>
+		 			<li>
+		 				<div class="line" style="display: none;"></div>
+		 				<a href="{{ url_for('list',id=1) }}">列表</a>
+		 			</li>
+		 		</ul>
+		 	</div>
+		</div>
+	</nav>
+    {% block main_part %}{% endblock %}
+
+</body>
+</html>

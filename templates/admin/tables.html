@@ -1,0 +1,124 @@
+{% extends 'admin/base.html' %}
+{% block main_part %}
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active">奖状管理</li>
+      </ol>
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+      <form action="" method="post" enctype='multipart/form-data'>
+        <div class="card-header">
+          <i class="fa fa-table"></i> 奖状表格</div>
+
+          <div class="tianjia"><a href="{{ url_for('admin_add_diploma') }}"><input type="button" value="添加" class="btn btn-info "></a></div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>选项</th>
+                  <th>项目名</th>
+                  <th>比赛名字</th>
+                  <th>级别</th>
+                  <th>等次</th>
+                  <th>比赛人员</th>
+                  <th>项目时间</th>
+
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>选项</th>
+                  <th>项目名</th>
+                  <th>比赛名字</th>
+                  <th>级别</th>
+                  <th>等次</th>
+                  <th>比赛人员</th>
+                  <th>项目时间</th>
+                  <th>操作</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <div class="quanxuan">
+                  <input name="allSel" type="checkbox" value="" />全选
+                </div>
+                {% for dip in diploma %}
+                    <tr>
+                      <td><input name="select" type="checkbox" value="{{ dip.id }}" /></td>
+                      <td>
+                          {{ dip.project_name }}
+                      </td>
+                      <td>
+                          {{ dip.compete_name }}
+                      </td>
+                      <td>
+                          {{ dip.level }}
+                      </td>
+                      <td>
+                          {{ dip.level[0] }}{{ dip.rank }}
+                      </td>
+                      <td>{{ " ".join(dip.members) }}</td>
+                      <td>{{ dip.diploma_time }}</td>
+                      <td>
+                        <a href="{{url_for('admin_edit_diploma',id=dip.id)}}"><input type="button" value="修改" class="btn btn-primarys"></a>
+                        <input type="submit" formaction="/admin/delete/diploma/{{ dip.id }}" value="删除" class="btn btn-primaryx">
+                      </td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+        <div class="card-footer small text-muted">
+          <div class="biaoge">
+            <input type="submit" value="删除" formaction="/admin/delete/diploma_list/" class="btn btn-danger" >
+            <input type="button" value="导入表格" id="excel_show" class="btn btn-info" >
+              <div class="disp" hidden="hidden">
+                  <input type="file" name="excel" id="add_excel">
+                <input type="submit" id="add_excel_submit" formaction="{{ url_for('admin_add_excel') }}" formmethod="post">
+              </div>
+
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+{% endblock %}
+{% block foot_script %}
+    <script>
+      $(document).ready(function(){
+          $('#excel_show').click(function () {
+              $("#add_excel").click()
+          });
+          $("#add_excel").change(function () {
+              $("#add_excel_submit").click()
+          });
+
+
+        $("[name='allSel']").click(function(){
+          if($(this).is(':checked')){
+            $("[name='select']").attr('checked',true);
+          }else{
+             $("[name='select']").attr('checked', false);
+          }
+        })
+        $("[name='select']").click(function(){
+          var allSel = false;
+           $("[name='select']").each(function(){
+             if(!$(this).is(':checked')){
+               allSel = true;
+             }
+           })
+           if(allSel){
+             $("[name='allSel']").attr('checked',false);
+           }else{
+             $("[name='allSel']").attr('checked', true);
+           }
+        })
+      })
+    </script>
+{% endblock %}

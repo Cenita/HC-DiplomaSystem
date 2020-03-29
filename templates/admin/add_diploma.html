@@ -1,0 +1,120 @@
+{% extends 'admin/base.html' %}
+{% block main_part %}
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{{ url_for('admin_manage') }}">奖状管理</a>
+        </li>
+        <li class="breadcrumb-item active">增加奖状</li>
+      </ol>
+      <!-- Icon Cards-->
+      <div class="row">
+
+      </div>
+      <div class="row">
+        <div class="container" id="box">
+          <form role="form" id="price_form" action="" method="post">
+            <div class="form-group">
+              <label for="username">项 目</label>
+              <input type="text" name="project_name" id="username" class="form-control" placeholder="输入项目"
+                value="{{ diploma.project_name }}"
+              >
+            </div>
+            <div class="form-group">
+              <label for="username">比赛名称 <span class="start">*</span></label>
+              <input type="text" name="compete_name"  class="form-control" placeholder="输入比赛名称"
+                value="{{ diploma.compete_name }}"
+              >
+            </div>
+            <div class="form-group">
+              <label for="username">级 别 <span class="start">*</span></label>
+              <div class="RadioStyle">
+                <div class="Block PaddingL">
+                  <input type="radio" name="level" id="model1" value="国家级"  {% if diploma.level=='国家级' %}checked{% endif %}/>
+                  <label for="model1">国家级</label>
+                  <input type="radio" name="level" id="model2" value="省级" {% if diploma.level=='省级' %}checked{% endif %}/>
+                  <label for="model2">省级</label>
+                  <input type="radio" name="level" id="model3" value="校级" {% if diploma.level=='校级' %}checked{% endif %}/>
+                  <label for="model3">校级</label>
+                  <input type="radio" name="level" id="model4" value="院级" {% if diploma.level=='院级' %}checked{% endif %}/>
+                  <label for="model4">院级</label>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="form-group">
+              <label for="username">等 次 <span class="start">*</span></label>
+              <div class="RadioStyle">
+                <div class="Block PaddingL">
+                  <input type="radio" value="特等奖" {% if diploma.rank=='特等奖' %}checked{% endif %}  name="rank" id="m1" />
+                  <label for="m1">特等奖</label>
+                  <input type="radio" value="一等奖" {% if diploma.rank=='一等奖' %}checked{% endif %} name="rank" id="m2" />
+                  <label for="m2">一等奖</label>
+                  <input type="radio" value="二等奖" {% if diploma.rank=='二等奖' %}checked{% endif %} name="rank" id="m3" />
+                  <label for="m3">二等奖</label>
+                  <input type="radio" value="三等奖" {% if diploma.rank=='三等奖' %}checked{% endif %} name="rank" id="m4" />
+                  <label for="m4">三等奖</label>
+                  <input type="radio" value="优秀奖" {% if diploma.rank=='优秀奖' %}checked{% endif %} name="rank" id="m5" />
+                  <label for="m5">优秀奖</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="age">比赛人员 <span class="start">*</span></label>
+              <input type="text" name="compete_member" class="form-control" value="{{ ";".join(diploma.members) }}" placeholder="输入比赛人员，用分号（；）隔开" >
+            </div>
+            <div class="form-group">
+              <label for="age">指导老师</label>
+              <input type="text" name="compete_teacher" class="form-control" value="{{ ";".join(diploma.teachers) }}" placeholder="输入指导老师，用分号（；）隔开" >
+            </div>
+            <div class="form-group">
+              <label for="time">项目时间 <span class="start">*</span></label>
+              <input type="date"  name="project_time" id="txtDate" class="form-control" value="{% if diploma.diploma_time %}{{ diploma.diploma_time }}{% else %}{{ today }}{% endif %}" placeholder="输入项目时间" >
+            </div>
+            <div class="form-group ">
+              <label for="conment">项目概述</label>
+              <textarea  id="conment" name="project_content" class="form-control biger"  placeholder="输入项目概述">{{ diploma.content }}</textarea>
+            </div>
+            <div class="form-group ">
+                <label for="conment">附件图片</label>
+                <div>
+                     <input type="file" name="project_image"  accept="image/jpeg">
+                </div>
+                <img src="{{ diploma.image_path }}" style="width: 100%" alt="">
+            </div>
+            <div class="form-group" style="margin-top: 50px">
+              <input type="button" onclick="put_inform();" value="{% if diploma.id!='' %}修改{% else %}添加{% endif %}" class="btn btn-primary">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+{% block foot_script %}
+    <script>
+        function put_inform() {
+            formdata = new FormData(document.getElementById('price_form'))
+            $.post({
+                url:"",
+                data:formdata,
+                dataType:'json',
+                processData:false,
+                contentType:false,
+                success:function (data) {
+                    if(data.status==400){
+                        alert(data.content);
+                        return;
+                    }
+                    else if(data.status==200){
+                        window.location.href='{{ url_for('admin_manage') }}'
+                    }
+                },
+                error:function (data) {
+                    
+                }
+            })
+        }
+    </script>
+{% endblock %}

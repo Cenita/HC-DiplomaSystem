@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>列表页面</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../dist/css/list.min.css">
+	<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+	<script type="text/javascript" src="../dist/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../dist/js/list.min.js"></script>
+	<script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<body>
+	<nav>
+		<div class="container">
+			<!-- 环创logo -->
+			
+			<div class="logo">
+				<img src="../dist/images/logo.png">
+			</div>
+		 	<div class="hclab">
+		 		<img src="../dist/images/hclab.png">
+		 	</div>
+		 	<div class="search-box">
+		 		<button><i class="icon-List iconfont"></i></button>
+		 	</div>
+		 	<div class="down">
+		 		<ul>
+		 			<li>
+		 				<div class="line" style="display: none;"></div>
+		 				<a href="../html/index.html">首页</a>
+		 			</li>
+		 			<li>
+		 				<div class="line"></div>
+		 				<a href="../html/list.html">列表</a>
+		 			</li>
+		 		</ul>
+		 	</div>
+		</div>
+	</nav>
+
+	<div class="search-input">
+		<input type="text" name="">
+		<i class="icon-search iconfont"></i>
+	</div>
+
+	<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    时间 <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">从古至今</a></li>
+    <li><a href="#">追溯历史</a></li>
+  </ul>
+</div>
+
+<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    级别 <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">国家级</a></li>
+    <li><a href="#">省级</a></li>
+    <li><a href="#">校级</a></li>
+    
+  </ul>
+</div>
+
+	<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    奖项 <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">一等奖</a></li>
+    <li><a href="#">二等奖</a></li>
+    <li><a href="#">三等奖</a></li>
+  </ul>
+  
+</div>
+
+
+
+	<div class="list">
+		<ul class="listall">
+			<li>
+				<a href="../html/list-detail.html">
+					<div class="list-container">
+						<p class="list-title">智慧公交精准控制系统</p>
+						<p class="list-detail">第五届中国"互联网+"大学生创新创业大赛二等奖</p>
+						<span class="list-rank">级别:国级</span>
+						<span class="list-time">项目时间:2019.01.11</span>
+						<img src="../dist/images/sanjiao.png">
+					</div>
+				</a>
+			</li>
+			<li>
+				<div class="list-container">
+					<p class="list-title">智慧公交精准控制系统</p>
+					<p class="list-detail">第五届中国"互联网+"大学生创新创业大赛二等奖</p>
+					<span class="list-rank">级别:国级</span>
+					<span class="list-time">项目时间:2019.01.11</span>
+					<img src="../dist/images/sanjiao.png">
+				</div>
+			</li>
+			<li>
+				<div class="list-container">
+					<p class="list-title">智慧公交精准控制系统</p>
+					<p class="list-detail">第五届中国"互联网+"大学生创新创业大赛二等奖</p>
+					<span class="list-rank">级别:国级</span>
+					<span class="list-time">项目时间:2019.01.11</span>
+					<img src="../dist/images/sanjiao.png">
+				</div>
+			</li>
+		</ul>
+	</div>
+
+
+
+	<!-- 分页 -->
+	<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+</body>
+</html>

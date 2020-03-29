@@ -1,0 +1,87 @@
+{% extends 'html/base.html' %}
+{% block header %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='honor/dist/css/list.min.css') }}">
+    <script src="{{ url_for('static',filename='honor/dist/js/list.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='honor/node_modules/bootstrap/dist/js/bootstrap.js') }}"></script>
+{% endblock %}
+{% block main_part %}
+<div class="main">
+    <div class="search-input">
+        <input type="text" name="">
+        <i class="icon-search iconfont"></i>
+    </div>
+    <form action="" id="riddle">
+        <!-- Single button -->
+    <div class="btn-group" id="time" action-target="time">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="none">
+        时间 <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a  action-data="now">从古至今</a></li>
+        <li><a  action-data="his">追溯历史</a></li>
+      </ul>
+    </div>
+
+    <!-- Single button -->
+    <div class="btn-group"  id="degree"  action-target="degree">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="none">
+        级别 <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="javascript:;" action-data="nation">国家级</a></li>
+        <li><a href="javascript:;" action-data="province">省级</a></li>
+        <li><a href="javascript:;" action-data="school">校级</a></li>
+      </ul>
+    </div>
+        <!-- Single button -->
+    <div class="btn-group" id="grade" action-target="grade">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="none">
+        奖项 <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="javascript:;" action-data="1">一等奖</a></li>
+        <li><a href="javascript:;" action-data="2">二等奖</a></li>
+        <li><a href="javascript:;" action-data="3">三等奖</a></li>
+      </ul>
+    </div>
+    </form>
+    <div class="list">
+        <ul class="listall">
+            {% for dip in diploma %}
+                <li>
+                    <a href="{{ url_for('article',id=dip.id) }}">
+                        <div class="list-container">
+                            <p class="list-title">{{ dip.project_name }}</p>
+                            <p class="list-detail" style="width:90%">{{ dip.compete_name }}</p>
+                            <span class="list-rank">级别:{{ dip.level[0]+dip.rank }}</span>
+                            <span class="list-time">项目时间:{{ dip.diploma_time.strftime('%Y-%m') }}</span>
+                            <img src="../../static/honor/dist/images/sanjiao.png">
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+
+
+
+        <!-- 分页 -->
+    <nav aria-label="Page navigation" >
+      <ul class="pagination" id="page" value="none">
+        <li>
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li>
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+</div>
+{% endblock %}

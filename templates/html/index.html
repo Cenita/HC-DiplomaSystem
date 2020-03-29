@@ -1,0 +1,116 @@
+{% extends 'html/base.html' %}
+{% block header %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='honor/dist/css/index.min.css') }}">
+{% endblock %}
+{% block main_part %}
+    <header>
+		<div class="hc-images">
+			<div class="hc-img">
+				<p class="hc-text">环创工作室</p>
+				<p class="hc-text2">全称为环宇创意电脑工作室,是广东省韶关学院第一个校级学生电脑技术性组织。</p>
+			</div>
+		</div>
+</header>
+    <div class="all">
+    <div class="all-img">
+        <p class="all-count">{{stat.total}}</p>
+        <div class="all-text">
+             <p>至今为止   <img src="{{ url_for('static',filename='honor/dist/images/jx.png') }}"></p>
+             <p>所获得的奖项总数</p>
+             <p class="english">Total number of awards received</p>
+        </div>
+
+    </div>
+    <div class="all-detail">
+        <div class="detail-bg">
+        </div>
+        <ul class="colorall">
+            <li class="red">
+                <img src="{{ url_for('static',filename='honor/dist/images/red.png') }}" class="other">
+                <div class="colorall-text">
+                    <p>至今为止</p>
+                    <p>所获得的国家级奖项</p>
+                    <p class="english">Number of provincial awards</p>
+                </div>
+                <div class="show-detail other"><span>{{ stat.nation.total }}</span></div>
+                <div class="show-detail2">
+                    <span>{{ stat.nation.one }}</span>
+                    <span>{{ stat.nation.two }}</span>
+                    <span>{{ stat.nation.three }}</span>
+                </div>
+                <div class="show-detail3">
+                    <span>一等奖</span>
+                    <span>二等奖</span>
+                    <span>三等奖</span>
+                </div>
+            </li>
+            <li class="blue">
+                <img src="{{ url_for('static',filename='honor/dist/images/blue.png') }}">
+                <div class="colorall-text">
+                    <p>至今为止</p>
+                    <p>所获得的省级奖项</p>
+                    <p class="english">Number of provincial awards</p>
+                </div>
+                <div class="show-detail"><span>{{ stat.province.total }}</span></div>
+                <div class="show-detail2">
+                    <span>{{ stat.province.one }}</span>
+                    <span>{{ stat.province.two }}</span>
+                    <span>{{ stat.province.three }}</span>
+                </div>
+                <div class="show-detail3">
+                    <span>一等奖</span>
+                    <span>二等奖</span>
+                    <span>三等奖</span>
+                </div>
+            </li>
+            <li class="green">
+                <img src="{{ url_for('static',filename='honor/dist/images/green.png') }}">
+                <div class="colorall-text">
+                    <p>至今为止</p>
+                    <p>所获得的校级奖项</p>
+                    <p class="english">Number of provincial awards</p>
+                </div>
+                <div class="show-detail"><span>{{ stat.school.total }}</span></div>
+                <div class="show-detail2">
+                    <span>{{ stat.school.one }}</span>
+                    <span>{{ stat.school.two }}</span>
+                    <span>{{ stat.school.three }}</span>
+                </div>
+                <div class="show-detail3">
+                    <span>一等奖</span>
+                    <span>二等奖</span>
+                    <span>三等奖</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    </div>
+    <div class="awards-img" style="margin-bottom: 200px">
+        {% for na in nation %}
+            <ul class="listall" style="padding-top: 20px;font-family:'Microsoft YaHei UI';font-weight: 500 ">
+            <li>
+                <style>
+                    .list-container:after{
+                        padding-bottom: 0px;
+                    }
+                </style>
+                    <div class="all-img list-container">
+                        <a href="{{ url_for('article',id=na.id) }}" style="display: block; text-decoration: none;">
+                            <p class="list-title">
+                                {{na.project_name}}
+                            </p>
+                            <p class="list-detail">{{ na.compete_name }}</p>
+                            <p class="list-detail" style="color: darkgrey">工作室成员：{{ " ".join(na.members) }}</p>
+                            <span class="list-rank">{{ na.level[0]+na.rank }}</span>
+                            <span class="list-time">{{ na.project_time }}</span>
+                            {% if na.image_path!="" %}
+                                <img src="{{ na.image_path }}" style="width: 100%;margin-top: 20px">
+                            {% endif %}
+                        </a>
+                    </div>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+
+{% endblock %}
